@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ember & Spice — A love letter to Tandoori Paneer Tikka, the Indian comfort food that feels like home.">
+  <title>Ember & Spice | Tandoori Paneer Tikka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#top" class="nav__logo" aria-label="Ember & Spice home">
+        <span class="nav__logo-icon" aria-hidden="true">🔥</span>
+        Ember & Spice
+      </a>
+
+      <button
+        class="nav__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        aria-label="Open menu"
+      >
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#story" class="nav__link">Our Story</a></li>
+        <li><a href="#dish" class="nav__link">The Dish</a></li>
+        <li><a href="#play" class="nav__link">Kitchen Lab</a></li>
+        <li><a href="#recipe" class="nav__link">Recipe</a></li>
+        <li><a href="#visit" class="nav__link nav__link--cta">Visit Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Comfort Food Edition · Regional Indian Classic</p>
+        <h1 id="hero-heading" class="hero__title">
+          Tandoori Paneer<br>
+          <em>Tikka</em>
+        </h1>
+        <p class="hero__subtitle">
+          Charred cubes of paneer, bell peppers, and onions — kissed by the tandoor
+          and finished with fresh cilantro. The dish you crave when nothing else will do.
+        </p>
+        <div class="hero__actions">
+          <a href="#play" class="btn btn--primary">Build Your Skewer</a>
+          <a href="#story" class="btn btn--ghost">Discover the Story</a>
+        </div>
+      </div>
+
+      <figure class="hero__figure" id="hero-figure">
+        <div class="hero__smoke" aria-hidden="true">
+          <span class="hero__smoke-wisp"></span>
+          <span class="hero__smoke-wisp"></span>
+          <span class="hero__smoke-wisp"></span>
+          <span class="hero__smoke-wisp"></span>
+          <span class="hero__smoke-wisp"></span>
+        </div>
+        <img
+          src="images/tandoori-paneer.png"
+          alt="Tandoori paneer tikka skewers with charred paneer cubes, bell peppers, red onion, and fresh cilantro on a dark plate"
+          width="800"
+          height="600"
+          class="hero__image"
+          loading="eager"
+        >
+        <button type="button" class="hero__sizzle-btn" id="sizzle-btn" aria-label="Trigger sizzle effect">
+          <span class="hero__sizzle-icon" aria-hidden="true">🔥</span>
+          Sizzle!
+        </button>
+        <div class="hero__sparks" id="hero-sparks" aria-hidden="true"></div>
+        <figcaption class="hero__caption">Hover for smoke · Click Sizzle for the tandoor effect</figcaption>
+      </figure>
+    </section>
+
+    <section class="stats" aria-label="Quick facts about Tandoori Paneer Tikka">
+      <dl class="stats__list">
+        <div class="stats__item">
+          <dt class="stats__label">Origin</dt>
+          <dd class="stats__value">North India</dd>
+        </div>
+        <div class="stats__item">
+          <dt class="stats__label">Cooking Method</dt>
+          <dd class="stats__value">Tandoor Clay Oven</dd>
+        </div>
+        <div class="stats__item">
+          <dt class="stats__label">Prep Time</dt>
+          <dd class="stats__value">30 min + marinate</dd>
+        </div>
+        <div class="stats__item">
+          <dt class="stats__label">Comfort Level</dt>
+          <dd class="stats__value">Maximum</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="story section" id="story" aria-labelledby="story-heading">
+      <div class="section__inner">
+        <div class="story__text">
+          <p class="section__eyebrow">Our Story</p>
+          <h2 id="story-heading" class="section__title">When the tandoor calls you home</h2>
+          <p>
+            At <strong>Ember & Spice</strong>, we believe comfort food isn't about complexity —
+            it's about memory. Tandoori Paneer Tikka is the dish that fills kitchens across
+            India with the scent of cumin, coriander, and smoldering charcoal.
+          </p>
+          <p>
+            We marinate thick cubes of fresh paneer in yogurt, Kashmiri chili, and a whisper
+            of garam masala, then thread them with crisp bell peppers and purple onion before
+            they meet the flame. Every char mark tells a story of warmth, gathering, and the
+            simple joy of sharing skewers straight from the grill.
+          </p>
+          <blockquote class="story__quote">
+            <p>"Some dishes feed the body. Tandoori paneer feeds the soul."</p>
+          </blockquote>
+        </div>
+
+        <div class="story__visual" aria-hidden="true">
+          <div class="spice-ring">
+            <span class="spice-ring__dot spice-ring__dot--orange"></span>
+            <span class="spice-ring__dot spice-ring__dot--green"></span>
+            <span class="spice-ring__dot spice-ring__dot--purple"></span>
+            <span class="spice-ring__dot spice-ring__dot--red"></span>
+            <div class="spice-ring__center">🌿</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dish section section--dark" id="dish" aria-labelledby="dish-heading">
+      <div class="section__inner">
+        <header class="section__header section__header--center">
+          <p class="section__eyebrow">The Dish</p>
+          <h2 id="dish-heading" class="section__title">What makes it unforgettable</h2>
+          <p class="section__lead">
+            Four elements, one perfect bite — smoky paneer, charred vegetables,
+            vibrant spices, and a cool green chutney on the side.
+          </p>
+        </header>
+
+        <ul class="cards">
+          <li class="card card--interactive" data-ingredient="paneer" tabindex="0" role="button" aria-label="Explore paneer ingredient">
+            <div class="card__icon card__icon--orange" aria-hidden="true">🧀</div>
+            <h3 class="card__title">Paneer</h3>
+            <p class="card__text">
+              Firm Indian cottage cheese, cut thick so it stays creamy inside
+              while the edges crisp and caramelize in the tandoor.
+            </p>
+            <span class="card__hint">Click to taste</span>
+            <div class="card__preview card__preview--paneer" aria-hidden="true"></div>
+          </li>
+          <li class="card card--interactive" data-ingredient="pepper" tabindex="0" role="button" aria-label="Explore bell pepper ingredient">
+            <div class="card__icon card__icon--green" aria-hidden="true">🫑</div>
+            <h3 class="card__title">Bell Peppers</h3>
+            <p class="card__text">
+              Green and red peppers add sweetness and a satisfying snap,
+              balancing the richness of the marinated paneer.
+            </p>
+            <span class="card__hint">Click to taste</span>
+            <div class="card__preview card__preview--pepper" aria-hidden="true"></div>
+          </li>
+          <li class="card card--interactive" data-ingredient="onion" tabindex="0" role="button" aria-label="Explore red onion ingredient">
+            <div class="card__icon card__icon--purple" aria-hidden="true">🧅</div>
+            <h3 class="card__title">Red Onion</h3>
+            <p class="card__text">
+              Thick purple onion slices soften on the grill, releasing
+              a gentle sweetness that cuts through the spice.
+            </p>
+            <span class="card__hint">Click to taste</span>
+            <div class="card__preview card__preview--onion" aria-hidden="true"></div>
+          </li>
+          <li class="card card--interactive" data-ingredient="spice" tabindex="0" role="button" aria-label="Explore spice marinade ingredient">
+            <div class="card__icon card__icon--red" aria-hidden="true">🌶️</div>
+            <h3 class="card__title">Spice Marinade</h3>
+            <p class="card__text">
+              Yogurt, Kashmiri chili, ginger-garlic paste, and chaat masala
+              create that signature tandoori orange glow.
+            </p>
+            <span class="card__hint">Click to taste</span>
+            <div class="card__preview card__preview--spice" aria-hidden="true"></div>
+          </li>
+        </ul>
+        <p class="cards__plate-label" id="plate-label" aria-live="polite">Tap an ingredient to add it to your plate</p>
+        <div class="mini-plate" id="mini-plate" aria-label="Your tasting plate">
+          <div class="mini-plate__items" id="mini-plate-items"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="play section section--play" id="play" aria-labelledby="play-heading">
+      <div class="section__inner">
+        <header class="section__header section__header--center">
+          <p class="section__eyebrow">Kitchen Lab</p>
+          <h2 id="play-heading" class="section__title">Build, spice & grill your tikka</h2>
+          <p class="section__lead">
+            Thread your skewer, dial up the Kashmiri heat, then send it into the tandoor.
+            Every click brings the kitchen to life.
+          </p>
+        </header>
+
+        <div class="play__grid">
+          <!-- Skewer Builder -->
+          <div class="play-panel play-panel--skewer">
+            <h3 class="play-panel__title">🍢 Skewer Builder</h3>
+            <p class="play-panel__desc">Click ingredients to stack them on the skewer</p>
+
+            <div class="ingredient-palette" role="group" aria-label="Skewer ingredients">
+              <button type="button" class="ingredient-btn" data-piece="paneer" aria-label="Add paneer cube">
+                <span class="ingredient-btn__shape ingredient-btn__shape--paneer"></span>
+                Paneer
+              </button>
+              <button type="button" class="ingredient-btn" data-piece="pepper" aria-label="Add bell pepper">
+                <span class="ingredient-btn__shape ingredient-btn__shape--pepper"></span>
+                Pepper
+              </button>
+              <button type="button" class="ingredient-btn" data-piece="onion" aria-label="Add red onion">
+                <span class="ingredient-btn__shape ingredient-btn__shape--onion"></span>
+                Onion
+              </button>
+            </div>
+
+            <div class="skewer-stage" aria-label="Your skewer preview">
+              <div class="skewer">
+                <div class="skewer__rod"></div>
+                <div class="skewer__pieces" id="skewer-pieces"></div>
+                <div class="skewer__tip"></div>
+              </div>
+            </div>
+
+            <div class="play-panel__actions">
+              <button type="button" class="btn btn--ghost btn--sm" id="clear-skewer">Clear</button>
+              <button type="button" class="btn btn--primary btn--sm" id="grill-skewer">Grill It! 🔥</button>
+            </div>
+            <p class="play-panel__status" id="skewer-status" aria-live="polite">Add at least 3 pieces to grill</p>
+          </div>
+
+          <!-- Spice Slider -->
+          <div class="play-panel play-panel--spice">
+            <h3 class="play-panel__title">🌶️ Spice Dial</h3>
+            <p class="play-panel__desc">Slide to adjust the marinade intensity</p>
+
+            <div class="spice-preview">
+              <div class="spice-preview__cube" id="spice-cube">
+                <div class="spice-preview__smoke" id="spice-smoke" aria-hidden="true"></div>
+              </div>
+              <p class="spice-preview__label" id="spice-label">Medium Heat</p>
+            </div>
+
+            <label class="spice-slider-wrap" for="spice-range">
+              <span class="spice-slider__min">Mild</span>
+              <input
+                type="range"
+                id="spice-range"
+                class="spice-slider"
+                min="0"
+                max="100"
+                value="50"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="50"
+                aria-describedby="spice-label"
+              >
+              <span class="spice-slider__max">Fiery</span>
+            </label>
+          </div>
+
+          <!-- Tandoor Oven -->
+          <div class="play-panel play-panel--tandoor">
+            <h3 class="play-panel__title">🏺 The Tandoor</h3>
+            <p class="play-panel__desc">Click the oven to roast your skewer</p>
+
+            <button type="button" class="tandoor" id="tandoor-btn" aria-label="Roast skewer in tandoor oven">
+              <div class="tandoor__body">
+                <div class="tandoor__opening">
+                  <div class="tandoor__glow"></div>
+                  <div class="tandoor__embers" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                  <div class="tandoor__skewer-slot" id="tandoor-skewer"></div>
+                </div>
+                <div class="tandoor__base"></div>
+              </div>
+              <span class="tandoor__label">Tap to Roast</span>
+            </button>
+            <p class="play-panel__status" id="tandoor-status" aria-live="polite">Build a skewer first, then roast it here</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="recipe section" id="recipe" aria-labelledby="recipe-heading">
+      <div class="section__inner recipe__grid">
+        <div class="recipe__intro">
+          <p class="section__eyebrow">The Recipe</p>
+          <h2 id="recipe-heading" class="section__title">Make it at home</h2>
+          <p>
+            This is the recipe we've been perfecting for years — simple enough
+            for a weeknight, special enough for guests. No tandoor? A hot grill
+            or oven broiler works beautifully.
+          </p>
+
+          <div class="recipe__meta">
+            <span class="recipe__tag">Serves 4</span>
+            <span class="recipe__tag">Vegetarian</span>
+            <span class="recipe__tag">Gluten-free</span>
+          </div>
+        </div>
+
+        <div class="recipe__steps">
+          <article class="recipe-block">
+            <h3 class="recipe-block__title">Marinade</h3>
+            <ul class="recipe-block__list">
+              <li>400g paneer, cubed</li>
+              <li>½ cup thick yogurt</li>
+              <li>2 tbsp Kashmiri red chili powder</li>
+              <li>1 tbsp ginger-garlic paste</li>
+              <li>1 tsp garam masala & chaat masala</li>
+              <li>Juice of 1 lemon, salt to taste</li>
+            </ul>
+          </article>
+
+          <article class="recipe-block">
+            <h3 class="recipe-block__title">Skewers & Grill</h3>
+            <ol class="recipe-block__list recipe-block__list--ordered recipe-steps" id="recipe-steps">
+              <li class="recipe-step" data-step="1">
+                <button type="button" class="recipe-step__check" aria-label="Mark step 1 complete"></button>
+                Marinate paneer for at least 2 hours (overnight is best).
+              </li>
+              <li class="recipe-step" data-step="2">
+                <button type="button" class="recipe-step__check" aria-label="Mark step 2 complete"></button>
+                Thread paneer with onion and bell pepper on skewers.
+              </li>
+              <li class="recipe-step" data-step="3">
+                <button type="button" class="recipe-step__check" aria-label="Mark step 3 complete"></button>
+                Grill on high heat, turning until charred on all sides.
+              </li>
+              <li class="recipe-step" data-step="4">
+                <button type="button" class="recipe-step__check" aria-label="Mark step 4 complete"></button>
+                Garnish with cilantro, serve with mint chutney and lemon wedges.
+              </li>
+            </ol>
+            <div class="recipe-progress" aria-hidden="true">
+              <div class="recipe-progress__bar" id="recipe-progress-bar"></div>
+            </div>
+            <p class="recipe-progress__text" id="recipe-progress-text" aria-live="polite">0 of 4 steps complete</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit section section--accent" id="visit" aria-labelledby="visit-heading">
+      <div class="section__inner visit__inner">
+        <div class="visit__content">
+          <p class="section__eyebrow section__eyebrow--light">Visit Us</p>
+          <h2 id="visit-heading" class="section__title section__title--light">
+            Come taste the comfort
+          </h2>
+          <p class="visit__text">
+            Ember & Spice is a celebration of the regional dishes that deserve
+            more attention. Pull up a chair, share a skewer, and let the smoke
+            remind you why some flavors feel like home.
+          </p>
+          <address class="visit__address">
+            <span>42 Spice Lane, Old Delhi Quarter</span>
+            <span>Open daily · 11 AM – 11 PM</span>
+            <a href="mailto:hello@emberandspice.in" class="visit__email">hello@emberandspice.in</a>
+          </address>
+        </div>
+
+        <form class="visit__form" aria-labelledby="form-heading">
+          <h3 id="form-heading" class="visit__form-title">Reserve a table</h3>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="guests">Guests</label>
+            <select id="guests" name="guests" required>
+              <option value="">Select party size</option>
+              <option value="2">2 guests</option>
+              <option value="4">4 guests</option>
+              <option value="6">6 guests</option>
+              <option value="8">8+ guests</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn--light">Request Reservation</button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__brand">
+        <span aria-hidden="true">🔥</span> Ember & Spice
+      </p>
+      <p class="site-footer__note">
+        Built for the DEV Frontend Challenge: Comfort Food Edition
+      </p>
+      <p class="site-footer__copy">&copy; 2026 Ember & Spice. Made with warmth and spice.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
