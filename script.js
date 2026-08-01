@@ -124,6 +124,37 @@
     sizzleBtn.addEventListener("click", createSparks);
   }
 
+  /* ── Story sizzle effect ── */
+  const storySizzleBtn = document.getElementById("story-sizzle-btn");
+  const storyFigure = document.getElementById("story-figure");
+  const storySparks = document.getElementById("story-sparks");
+
+  function createStorySparks() {
+    if (!storySparks || !storyFigure) return;
+
+    storyFigure.classList.add("is-sizzling");
+
+    for (let i = 0; i < 16; i++) {
+      const spark = document.createElement("span");
+      spark.className = "hero__spark";
+      const x = 20 + Math.random() * 60;
+      const y = 30 + Math.random() * 40;
+      spark.style.left = `${x}%`;
+      spark.style.top = `${y}%`;
+      spark.style.setProperty("--sx", `${(Math.random() - 0.5) * 80}px`);
+      spark.style.setProperty("--sy", `${-30 - Math.random() * 60}px`);
+      storySparks.appendChild(spark);
+
+      setTimeout(() => spark.remove(), 800);
+    }
+
+    setTimeout(() => storyFigure.classList.remove("is-sizzling"), 600);
+  }
+
+  if (storySizzleBtn) {
+    storySizzleBtn.addEventListener("click", createStorySparks);
+  }
+
   /* ── Interactive ingredient cards → mini plate ── */
   const interactiveCards = document.querySelectorAll(".card--interactive");
   const miniPlateItems = document.getElementById("mini-plate-items");

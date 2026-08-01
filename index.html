@@ -68,14 +68,21 @@
           <span class="hero__smoke-wisp"></span>
           <span class="hero__smoke-wisp"></span>
         </div>
-        <img
-          src="images/tandoori-paneer.png"
-          alt="Tandoori paneer tikka skewers with charred paneer cubes, bell peppers, red onion, and fresh cilantro on a dark plate"
-          width="800"
-          height="600"
-          class="hero__image"
-          loading="eager"
-        >
+
+        <!-- Aesthetic tandoori paneer video embed -->
+        <div class="hero__video-wrap">
+          <iframe
+            class="hero__video"
+            src="https://www.pexels.com/video/30044482/embed"
+            title="Sizzling Tandoori Paneer Tikka cooking video"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+            loading="lazy"
+            frameborder="0"
+          ></iframe>
+          <div class="hero__video-overlay" aria-hidden="true"></div>
+        </div>
+
         <button type="button" class="hero__sizzle-btn" id="sizzle-btn" aria-label="Trigger sizzle effect">
           <span class="hero__sizzle-icon" aria-hidden="true">🔥</span>
           Sizzle!
@@ -127,14 +134,26 @@
           </blockquote>
         </div>
 
-        <div class="story__visual" aria-hidden="true">
-          <div class="spice-ring">
-            <span class="spice-ring__dot spice-ring__dot--orange"></span>
-            <span class="spice-ring__dot spice-ring__dot--green"></span>
-            <span class="spice-ring__dot spice-ring__dot--purple"></span>
-            <span class="spice-ring__dot spice-ring__dot--red"></span>
-            <div class="spice-ring__center">🌿</div>
-          </div>
+        <div class="story__visual">
+          <figure class="story__photo-wrap" id="story-figure">
+            <img
+              src="images/tandoori-paneer.png"
+              alt="Tandoori paneer tikka skewers with charred paneer cubes, bell peppers, red onion, and fresh cilantro on a dark plate"
+              class="story__photo"
+              width="600"
+              height="450"
+              loading="lazy"
+            >
+            <button type="button" class="story__sizzle-btn" id="story-sizzle-btn" aria-label="Trigger sizzle effect on story photo">
+              <span class="hero__sizzle-icon" aria-hidden="true">🔥</span>
+              Sizzle!
+            </button>
+            <div class="story__sparks" id="story-sparks" aria-hidden="true"></div>
+            <div class="story__photo-badge" aria-hidden="true">
+              <span>🔥</span>
+              <span>Tandoor-Fired</span>
+            </div>
+          </figure>
         </div>
       </div>
     </section>

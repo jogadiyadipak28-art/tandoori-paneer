@@ -317,6 +317,8 @@ select:focus-visible {
 
 .hero__figure {
   position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
 .hero__figure:hover .hero__smoke-wisp {
@@ -418,16 +420,49 @@ select:focus-visible {
   100% { transform: translate(var(--sx), var(--sy)) scale(0); opacity: 0; }
 }
 
-.hero__figure.is-sizzling .hero__image {
-  filter: brightness(1.15) saturate(1.2);
-  transition: filter 0.3s ease;
-}
-
-.hero__image {
+/* Hero video */
+.hero__video-wrap {
+  position: relative;
   width: 100%;
   border-radius: var(--radius-lg);
+  overflow: hidden;
   box-shadow: var(--shadow-md), var(--shadow-glow);
-  border: 1px solid rgba(230, 126, 34, 0.2);
+  border: 1px solid rgba(230, 126, 34, 0.25);
+  aspect-ratio: 4 / 3;
+  background: #1a0e08;
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Warm cinematic overlay on the video */
+.hero__video-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(20, 8, 2, 0.45) 0%, transparent 50%),
+    linear-gradient(to right, rgba(160, 64, 0, 0.08) 0%, transparent 60%);
+  border-radius: var(--radius-lg);
+  z-index: 1;
+}
+
+/* Keep sizzle button and sparks above overlay */
+
+.hero__sparks {
+  z-index: 3;
+}
+
+/* Sizzle effect on video wrap */
+.hero__figure.is-sizzling .hero__video-wrap {
+  filter: brightness(1.12) saturate(1.15);
+  transition: filter 0.3s ease;
 }
 
 .hero__caption {
@@ -567,63 +602,93 @@ select:focus-visible {
   margin: 0;
 }
 
-.spice-ring {
+/* Story photo */
+.story__photo-wrap {
   position: relative;
-  width: 280px;
-  height: 280px;
-  margin: 0 auto;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--color-bg-warm) 30%, transparent 70%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md), 0 0 60px rgba(230, 126, 34, 0.15);
   border: 1px solid rgba(230, 126, 34, 0.2);
-  animation: pulse-ring 4s ease-in-out infinite;
 }
 
-.spice-ring__center {
+.story__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+.story__photo-wrap:hover .story__photo {
+  transform: scale(1.04);
+  filter: brightness(1.05) saturate(1.1);
+}
+
+.story__photo-badge {
   position: absolute;
-  inset: 0;
+  bottom: 1.25rem;
+  left: 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 3rem;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: rgba(18, 8, 2, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(230, 126, 34, 0.45);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-orange);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.spice-ring__dot {
+/* Story sizzle button */
+.story__sizzle-btn {
   position: absolute;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  box-shadow: var(--shadow-sm);
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(18, 18, 18, 0.85);
+  border: 1px solid rgba(230, 126, 34, 0.5);
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
 }
 
-.spice-ring__dot--orange {
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-orange);
+.story__sizzle-btn:hover {
+  background: rgba(211, 84, 0, 0.9);
+  box-shadow: 0 0 24px rgba(230, 126, 34, 0.4);
 }
 
-.spice-ring__dot--green {
-  bottom: 15%;
-  left: 15%;
-  background: var(--color-green);
+.story__sizzle-btn:active {
+  transform: scale(0.95);
 }
 
-.spice-ring__dot--purple {
-  bottom: 15%;
-  right: 15%;
-  background: var(--color-purple);
+/* Story sparks container */
+.story__sparks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
-.spice-ring__dot--red {
-  top: 50%;
-  right: 5%;
-  transform: translateY(-50%);
-  background: var(--color-red);
-}
-
-@keyframes pulse-ring {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(230, 126, 34, 0.1); }
-  50% { box-shadow: 0 0 40px 10px rgba(230, 126, 34, 0.08); }
+/* Sizzle effect on story photo */
+.story__photo-wrap.is-sizzling .story__photo {
+  filter: brightness(1.15) saturate(1.2);
+  transition: filter 0.3s ease;
 }
 
 /* Cards */
