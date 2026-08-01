@@ -292,7 +292,6 @@
 
   function updateSpice(value) {
     const level = SPICE_LEVELS.find((l) => value <= l.max) || SPICE_LEVELS[SPICE_LEVELS.length - 1];
-    const t = (value % 20) / 20 || (value === 100 ? 1 : 0.5);
 
     if (spiceCube) {
       spiceCube.style.background = `linear-gradient(135deg, ${level.from}, ${level.to})`;

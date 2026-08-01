@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ember & Spice — A love letter to Tandoori Paneer Tikka, the Indian comfort food that feels like home.">
   <title>Ember & Spice | Tandoori Paneer Tikka</title>
-  <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.svg">
   <link rel="apple-touch-icon" href="favicon.svg">
@@ -48,55 +47,54 @@
 
   <main id="main">
     <div class="hero-wrapper">
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero__content">
-        <p class="hero__eyebrow">Comfort Food Edition · Regional Indian Classic</p>
-        <h1 id="hero-heading" class="hero__title">
-          Tandoori Paneer<br>
-          <em>Tikka</em>
-        </h1>
-        <p class="hero__subtitle">
-          Charred cubes of paneer, bell peppers, and onions — kissed by the tandoor
-          and finished with fresh cilantro. The dish you crave when nothing else will do.
-        </p>
-        <div class="hero__actions">
-          <a href="#play" class="btn btn--primary">Build Your Skewer</a>
-          <a href="#story" class="btn btn--ghost">Discover the Story</a>
-        </div>
-      </div>
-
-      <figure class="hero__figure" id="hero-figure">
-        <div class="hero__smoke" aria-hidden="true">
-          <span class="hero__smoke-wisp"></span>
-          <span class="hero__smoke-wisp"></span>
-          <span class="hero__smoke-wisp"></span>
-          <span class="hero__smoke-wisp"></span>
-          <span class="hero__smoke-wisp"></span>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero__content">
+          <p class="hero__eyebrow">Comfort Food Edition · Regional Indian Classic</p>
+          <h1 id="hero-heading" class="hero__title">
+            Tandoori Paneer<br>
+            <em>Tikka</em>
+          </h1>
+          <p class="hero__subtitle">
+            Charred cubes of paneer, bell peppers, and onions — kissed by the tandoor
+            and finished with fresh cilantro. The dish you crave when nothing else will do.
+          </p>
+          <div class="hero__actions">
+            <a href="#play" class="btn btn--primary">Build Your Skewer</a>
+            <a href="#story" class="btn btn--ghost">Discover the Story</a>
+          </div>
         </div>
 
-        <!-- Aesthetic tandoori paneer video -->
-        <div class="hero__video-wrap">
-          <video
-            class="hero__video"
-            src="videos/make_me_an_aesthetic_realistic.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            aria-label="Aesthetic tandoori paneer tikka cooking video"
-          ></video>
-          <div class="hero__video-overlay" aria-hidden="true"></div>
-        </div>
+        <figure class="hero__figure" id="hero-figure">
+          <div class="hero__smoke" aria-hidden="true">
+            <span class="hero__smoke-wisp"></span>
+            <span class="hero__smoke-wisp"></span>
+            <span class="hero__smoke-wisp"></span>
+            <span class="hero__smoke-wisp"></span>
+            <span class="hero__smoke-wisp"></span>
+          </div>
 
-        <button type="button" class="hero__sizzle-btn" id="sizzle-btn" aria-label="Trigger sizzle effect">
-          <span class="hero__sizzle-icon" aria-hidden="true" style="color: antiquewhite;">🔥</span>
-          Sizzle!
-        </button>
-        <div class="hero__sparks" id="hero-sparks" aria-hidden="true"></div>
-        <figcaption class="hero__caption">Hover for smoke · Click Sizzle for the tandoor effect</figcaption>
-      </figure>
-    </section>
-    </div><!-- end .hero-wrapper -->
+          <div class="hero__video-wrap">
+            <video
+              class="hero__video"
+              src="videos/make_me_an_aesthetic_realistic.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              aria-label="Aesthetic tandoori paneer tikka cooking video"
+            ></video>
+            <div class="hero__video-overlay" aria-hidden="true"></div>
+          </div>
+
+          <button type="button" class="hero__sizzle-btn" id="sizzle-btn" aria-label="Trigger sizzle effect">
+            <span class="hero__sizzle-icon" aria-hidden="true">🔥</span>
+            Sizzle!
+          </button>
+          <div class="hero__sparks" id="hero-sparks" aria-hidden="true"></div>
+          <figcaption class="hero__caption">Hover for smoke · Click Sizzle for the tandoor effect</figcaption>
+        </figure>
+      </section>
+    </div>
 
     <section class="stats" aria-label="Quick facts about Tandoori Paneer Tikka">
       <dl class="stats__list">
@@ -236,7 +234,6 @@
         </header>
 
         <div class="play__grid">
-          <!-- Skewer Builder -->
           <div class="play-panel play-panel--skewer">
             <h3 class="play-panel__title">🍢 Skewer Builder</h3>
             <p class="play-panel__desc">Click ingredients to stack them on the skewer</p>
@@ -271,7 +268,6 @@
             <p class="play-panel__status" id="skewer-status" aria-live="polite">Add at least 3 pieces to grill</p>
           </div>
 
-          <!-- Spice Slider -->
           <div class="play-panel play-panel--spice">
             <h3 class="play-panel__title">🌶️ Spice Dial</h3>
             <p class="play-panel__desc">Slide to adjust the marinade intensity</p>
@@ -301,7 +297,6 @@
             </label>
           </div>
 
-          <!-- Tandoor Oven -->
           <div class="play-panel play-panel--tandoor">
             <h3 class="play-panel__title">🏺 The Tandoor</h3>
             <p class="play-panel__desc">Click the oven to roast your skewer</p>
@@ -433,12 +428,8 @@
 
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p class="site-footer__brand">
-        Ember & Spice
-      </p>
-      <p class="site-footer__note">
-        Built for the DEV Frontend Challenge: Comfort Food Edition
-      </p>
+      <p class="site-footer__brand">Ember & Spice</p>
+      <p class="site-footer__note">Built for the DEV Frontend Challenge: Comfort Food Edition</p>
       <p class="site-footer__copy">&copy; 2026 Ember & Spice. Made with warmth and spice.</p>
     </div>
   </footer>
