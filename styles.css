@@ -2472,3 +2472,20 @@ body::before {
   filter: drop-shadow(0 4px 20px rgba(201, 144, 42, 0.2));
   animation: illus-glow 4s ease-in-out infinite alternate;
 }
+
+/* Recipe family illustration — blends into background */
+.recipe-family-illus {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1.5rem 0 0;
+  border-radius: var(--radius-md);
+  mix-blend-mode: multiply;
+  opacity: 0.88;
+  filter: sepia(0.15) contrast(0.95);
+  transition: opacity 0.4s ease;
+}
+
+.recipe-family-illus:hover {
+  opacity: 1;
+}
