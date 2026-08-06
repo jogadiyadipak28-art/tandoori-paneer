@@ -214,6 +214,14 @@
       const piece = document.createElement("div");
       piece.className = `skewer-piece skewer-piece--${type}`;
       if (isGrilled) piece.classList.add("is-grilled");
+
+      // Apply live spice color to paneer pieces (unless grilled)
+      if (type === "paneer" && !isGrilled && spiceRange) {
+        const val = Number(spiceRange.value);
+        const level = SPICE_LEVELS.find((l) => val <= l.max) || SPICE_LEVELS[SPICE_LEVELS.length - 1];
+        piece.style.background = `linear-gradient(135deg, ${level.from} 20%, ${level.to} 80%)`;
+      }
+
       skewerPieces.appendChild(piece);
     });
 
@@ -305,6 +313,11 @@
     if (spiceSmoke) {
       spiceSmoke.style.opacity = value > 50 ? String((value - 50) / 50) : "0";
     }
+
+    // Sync paneer skewer pieces to the current spice color
+    document.querySelectorAll(".skewer-piece--paneer:not(.is-grilled)").forEach((piece) => {
+      piece.style.background = `linear-gradient(135deg, ${level.from} 20%, ${level.to} 80%)`;
+    });
   }
 
   if (spiceRange) {
