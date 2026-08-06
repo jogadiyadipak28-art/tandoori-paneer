@@ -316,48 +316,156 @@
           </p>
         </header>
 
-        <ul class="cards">
-          <li class="card card--interactive" data-ingredient="paneer" tabindex="0" role="button" aria-label="Explore paneer ingredient">
+        <ul class="cards" style="display:none" aria-hidden="true">
+          <li class="card card--interactive" data-ingredient="paneer" tabindex="-1" role="button" aria-label="Explore paneer ingredient">
             <div class="card__icon card__icon--orange" aria-hidden="true">🧀</div>
             <h3 class="card__title">Paneer</h3>
-            <p class="card__text">
-              Firm Indian cottage cheese, cut thick so it stays creamy inside
-              while the edges crisp and caramelize in the tandoor.
-            </p>
+            <p class="card__text">Firm Indian cottage cheese, cut thick so it stays creamy inside while the edges crisp and caramelize in the tandoor.</p>
             <span class="card__hint">Click to taste</span>
             <div class="card__preview card__preview--paneer" aria-hidden="true"></div>
           </li>
-          <li class="card card--interactive" data-ingredient="pepper" tabindex="0" role="button" aria-label="Explore bell pepper ingredient">
+          <li class="card card--interactive" data-ingredient="pepper" tabindex="-1" role="button" aria-label="Explore bell pepper ingredient">
             <div class="card__icon card__icon--green" aria-hidden="true">🫑</div>
             <h3 class="card__title">Bell Peppers</h3>
-            <p class="card__text">
-              Green and red peppers add sweetness and a satisfying snap,
-              balancing the richness of the marinated paneer.
-            </p>
+            <p class="card__text">Green and red peppers add sweetness and a satisfying snap, balancing the richness of the marinated paneer.</p>
             <span class="card__hint">Click to taste</span>
             <div class="card__preview card__preview--pepper" aria-hidden="true"></div>
           </li>
-          <li class="card card--interactive" data-ingredient="onion" tabindex="0" role="button" aria-label="Explore red onion ingredient">
+          <li class="card card--interactive" data-ingredient="onion" tabindex="-1" role="button" aria-label="Explore red onion ingredient">
             <div class="card__icon card__icon--purple" aria-hidden="true">🧅</div>
             <h3 class="card__title">Red Onion</h3>
-            <p class="card__text">
-              Thick purple onion slices soften on the grill, releasing
-              a gentle sweetness that cuts through the spice.
-            </p>
+            <p class="card__text">Thick purple onion slices soften on the grill, releasing a gentle sweetness that cuts through the spice.</p>
             <span class="card__hint">Click to taste</span>
             <div class="card__preview card__preview--onion" aria-hidden="true"></div>
           </li>
-          <li class="card card--interactive" data-ingredient="spice" tabindex="0" role="button" aria-label="Explore spice marinade ingredient">
+          <li class="card card--interactive" data-ingredient="spice" tabindex="-1" role="button" aria-label="Explore spice marinade ingredient">
             <div class="card__icon card__icon--red" aria-hidden="true">🌶️</div>
             <h3 class="card__title">Spice Marinade</h3>
-            <p class="card__text">
-              Yogurt, Kashmiri chili, ginger-garlic paste, and chaat masala
-              create that signature tandoori orange glow.
-            </p>
+            <p class="card__text">Yogurt, Kashmiri chili, ginger-garlic paste, and chaat masala create that signature tandoori orange glow.</p>
             <span class="card__hint">Click to taste</span>
             <div class="card__preview card__preview--spice" aria-hidden="true"></div>
           </li>
         </ul>
+
+        <!-- ── Spinning Tray ── -->
+        <div class="tray-layout">
+
+          <!-- Left: the tray -->
+          <div class="tray-col">
+            <div class="tray-widget" id="tray-widget">
+
+              <!-- Background slowly-spinning drum engraving -->
+              <div class="tray__drum-bg" aria-hidden="true"></div>
+
+              <!-- The plate -->
+              <div class="tray__plate">
+                <!-- Rotating ring of 4 dishes -->
+                <div class="tray__ring" id="tray-ring" role="tablist" aria-label="Ingredients of Tandoori Paneer Tikka">
+
+                  <button class="tray__dish" type="button"
+                    style="--a:0deg"
+                    id="tray-tab-paneer" role="tab"
+                    aria-controls="tray-panel-paneer"
+                    aria-selected="true" tabindex="0"
+                    aria-label="Paneer">
+                    <span class="tray__dish-inner">🧀</span>
+                  </button>
+
+                  <button class="tray__dish" type="button"
+                    style="--a:90deg"
+                    id="tray-tab-pepper" role="tab"
+                    aria-controls="tray-panel-pepper"
+                    aria-selected="false" tabindex="-1"
+                    aria-label="Bell Peppers">
+                    <span class="tray__dish-inner">🫑</span>
+                  </button>
+
+                  <button class="tray__dish" type="button"
+                    style="--a:180deg"
+                    id="tray-tab-onion" role="tab"
+                    aria-controls="tray-panel-onion"
+                    aria-selected="false" tabindex="-1"
+                    aria-label="Red Onion">
+                    <span class="tray__dish-inner">🧅</span>
+                  </button>
+
+                  <button class="tray__dish" type="button"
+                    style="--a:270deg"
+                    id="tray-tab-spice" role="tab"
+                    aria-controls="tray-panel-spice"
+                    aria-selected="false" tabindex="-1"
+                    aria-label="Spice Marinade">
+                    <span class="tray__dish-inner">🌶️</span>
+                  </button>
+
+                </div><!-- /tray__ring -->
+
+                <!-- Centre label -->
+                <div class="tray__label" aria-hidden="true">
+                  <span class="tray__label-name" id="tray-label-name">Paneer</span>
+                  <span class="tray__label-hint">spin to explore</span>
+                </div>
+              </div><!-- /tray__plate -->
+
+            </div><!-- /tray-widget -->
+
+            <!-- Spin controls -->
+            <div class="tray__controls">
+              <button class="tray__spin-btn" type="button" data-tray-spin="-1" aria-label="Previous ingredient">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+              </button>
+              <span class="tray__spin-hint">Spin or click a dish</span>
+              <button class="tray__spin-btn" type="button" data-tray-spin="1" aria-label="Next ingredient">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div><!-- /tray-col -->
+
+          <!-- Right: detail panel -->
+          <div class="tray-panels">
+
+            <div class="tray-panel" id="tray-panel-paneer" role="tabpanel" aria-labelledby="tray-tab-paneer" tabindex="0">
+              <div class="tray-panel__icon" style="background:rgba(230,126,34,0.15)">🧀</div>
+              <h3 class="tray-panel__title">Paneer</h3>
+              <p class="tray-panel__sub">The heart of the skewer</p>
+              <p class="tray-panel__text">Firm Indian cottage cheese, cut thick so it stays creamy inside while the edges crisp and caramelize in the tandoor. Its mild richness soaks up the spiced marinade like nothing else.</p>
+              <button type="button" class="tray-panel__cta" data-tray-ingredient="paneer">
+                🍽️ Add to plate
+              </button>
+            </div>
+
+            <div class="tray-panel" id="tray-panel-pepper" role="tabpanel" aria-labelledby="tray-tab-pepper" tabindex="0" hidden>
+              <div class="tray-panel__icon" style="background:rgba(39,174,96,0.15)">🫑</div>
+              <h3 class="tray-panel__title">Bell Peppers</h3>
+              <p class="tray-panel__sub">The sweet crunch</p>
+              <p class="tray-panel__text">Green and red peppers add sweetness and a satisfying snap, balancing the richness of the marinated paneer. They char beautifully at the edges.</p>
+              <button type="button" class="tray-panel__cta" data-tray-ingredient="pepper">
+                🍽️ Add to plate
+              </button>
+            </div>
+
+            <div class="tray-panel" id="tray-panel-onion" role="tabpanel" aria-labelledby="tray-tab-onion" tabindex="0" hidden>
+              <div class="tray-panel__icon" style="background:rgba(142,68,173,0.15)">🧅</div>
+              <h3 class="tray-panel__title">Red Onion</h3>
+              <p class="tray-panel__sub">The gentle sweetness</p>
+              <p class="tray-panel__text">Thick purple onion slices soften on the grill, releasing a gentle sweetness that cuts through the spice. The caramelized edges add a subtle smokiness.</p>
+              <button type="button" class="tray-panel__cta" data-tray-ingredient="onion">
+                🍽️ Add to plate
+              </button>
+            </div>
+
+            <div class="tray-panel" id="tray-panel-spice" role="tabpanel" aria-labelledby="tray-tab-spice" tabindex="0" hidden>
+              <div class="tray-panel__icon" style="background:rgba(192,57,43,0.15)">🌶️</div>
+              <h3 class="tray-panel__title">Spice Marinade</h3>
+              <p class="tray-panel__sub">The soul of tandoori</p>
+              <p class="tray-panel__text">Yogurt, Kashmiri chili, ginger-garlic paste, and chaat masala create that signature tandoori orange glow. The yogurt tenderizes; the spices ignite.</p>
+              <button type="button" class="tray-panel__cta" data-tray-ingredient="spice">
+                🍽️ Add to plate
+              </button>
+            </div>
+
+          </div><!-- /tray-panels -->
+        </div><!-- /tray-layout -->
         <p class="cards__plate-label" id="plate-label" aria-live="polite">Tap an ingredient to add it to your plate</p>
         <div class="mini-plate" id="mini-plate" aria-label="Your tasting plate">
           <div class="mini-plate__items" id="mini-plate-items"></div>

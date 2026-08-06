@@ -390,6 +390,197 @@
     });
   }
 
+  /* ── Spinning Tray ── */
+  (function () {
+    const widget = document.getElementById("tray-widget");
+    if (!widget) return;
+
+    const ring     = document.getElementById("tray-ring");
+    const tabs     = Array.from(ring.querySelectorAll('[role="tab"]'));
+    const panels   = tabs.map(t => document.getElementById(t.getAttribute("aria-controls")));
+    const labelEl  = document.getElementById("tray-label-name");
+    const STEP     = 360 / tabs.length;
+    const EASE     = "cubic-bezier(0.34,0.02,0.2,1)";
+
+    let turns   = 0;
+    let current = 0;
+
+    const names = { paneer: "Paneer", pepper: "Bell Peppers", onion: "Red Onion", spice: "Spice Marinade" };
+
+    function getIngredient(tab) {
+      return tab.id.replace("tray-tab-", "");
+    }
+
+    function paint(next) {
+      tabs.forEach((t, i) => {
+        const on = i === next;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        if (panels[i]) panels[i].hidden = !on;
+      });
+      const ing = getIngredient(tabs[next]);
+      if (labelEl) labelEl.textContent = names[ing] || ing;
+      current = next;
+    }
+
+    function rotateTo(t) {
+      widget.style.setProperty("--tray-rot", (-t * STEP) + "deg");
+      // counter-rotate each dish inner
+      tabs.forEach(dish => {
+        const inner = dish.querySelector(".tray__dish-inner");
+        if (inner) inner.style.rotate = (t * STEP) + "deg";
+      });
+    }
+
+    function select(next, focus) {
+      if (next === current) return;
+      let delta = next - current;
+      if (delta > tabs.length / 2) delta -= tabs.length;
+      if (delta < -tabs.length / 2) delta += tabs.length;
+      turns += delta;
+      rotateTo(turns);
+      paint(next);
+      if (focus) tabs[next].focus();
+    }
+
+    function settle(rawTurns) {
+      turns = Math.round(rawTurns);
+      rotateTo(turns);
+      const n = tabs.length;
+      paint(((turns % n) + n) % n);
+    }
+
+    function shift(dir) {
+      select((current + dir + tabs.length) % tabs.length, false);
+    }
+
+    // Click each dish tab
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(i, false));
+    });
+
+    // Spin buttons
+    document.querySelectorAll("[data-tray-spin]").forEach(btn => {
+      btn.addEventListener("click", () => shift(parseInt(btn.dataset.traySpin, 10)));
+    });
+
+    // Keyboard on tablist
+    ring.addEventListener("keydown", e => {
+      const last = tabs.length - 1;
+      let next = null;
+      if      (e.key === "ArrowRight" || e.key === "ArrowDown")  next = current === last ? 0 : current + 1;
+      else if (e.key === "ArrowLeft"  || e.key === "ArrowUp")    next = current === 0 ? last : current - 1;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End")  next = last;
+      else return;
+      e.preventDefault();
+      select(next, true);
+    });
+
+    // Drag to spin
+    let dragging = false, moved = false;
+    let startAngle = 0, startTurns = 0;
+    let lastAngle = 0, lastTime = 0, velocity = 0;
+    const DEAD = 6;
+
+    function angleAt(e) {
+      const r = widget.getBoundingClientRect();
+      return Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI;
+    }
+    function wrap(d) {
+      while (d >  180) d -= 360;
+      while (d < -180) d += 360;
+      return d;
+    }
+    function shownTurns() {
+      const val = widget.style.getPropertyValue("--tray-rot") || "0deg";
+      return -parseFloat(val) / STEP;
+    }
+
+    widget.addEventListener("pointerdown", e => {
+      if (e.button && e.button !== 0) return;
+      dragging = true; moved = false;
+      startAngle = lastAngle = angleAt(e);
+      startTurns = shownTurns();
+      lastTime = e.timeStamp; velocity = 0;
+    });
+
+    widget.addEventListener("pointermove", e => {
+      if (!dragging) return;
+      const a = angleAt(e);
+      const d = wrap(a - startAngle);
+      if (!moved && Math.abs(d * Math.PI / 180) * (widget.offsetWidth / 2) < DEAD) return;
+      if (!moved) {
+        moved = true;
+        widget.classList.add("is-dragging");
+        rotateTo(startTurns);
+        widget.setPointerCapture(e.pointerId);
+      }
+      const dt = Math.max(1, e.timeStamp - lastTime);
+      velocity = wrap(a - lastAngle) / dt;
+      lastAngle = a; lastTime = e.timeStamp;
+      rotateTo(startTurns - d / STEP);
+      e.preventDefault();
+    });
+
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      if (widget.hasPointerCapture && widget.hasPointerCapture(e.pointerId)) widget.releasePointerCapture(e.pointerId);
+      if (!moved) return;
+      widget.classList.remove("is-dragging");
+      const live = startTurns - wrap(lastAngle - startAngle) / STEP;
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const glide  = reduce ? 0 : Math.max(-1.5, Math.min(1.5, velocity * 80 / STEP));
+      settle(live - glide);
+      const swallow = ev => { ev.stopPropagation(); ev.preventDefault(); };
+      widget.addEventListener("click", swallow, true);
+      setTimeout(() => widget.removeEventListener("click", swallow, true), 0);
+    }
+
+    widget.addEventListener("pointerup", endDrag);
+    widget.addEventListener("pointercancel", endDrag);
+
+    // Add to plate via panel CTA buttons
+    document.querySelectorAll("[data-tray-ingredient]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const ing = btn.dataset.trayIngredient;
+
+        // reuse existing addToPlate if available
+        if (typeof addToPlate === "function") {
+          const fakeCard = document.querySelector(`[data-ingredient="${ing}"]`);
+          if (fakeCard) addToPlate(ing, fakeCard);
+        } else {
+          // fallback: directly update mini plate
+          const mp = document.getElementById("mini-plate-items");
+          const pl = document.getElementById("plate-label");
+          const emoji = { paneer: "🧀", pepper: "🫑", onion: "🧅", spice: "🌶️" };
+          const nm    = { paneer: "Paneer", pepper: "Bell Pepper", onion: "Red Onion", spice: "Spice Marinade" };
+          if (mp) {
+            const span = document.createElement("span");
+            span.className = "plate-item";
+            span.textContent = emoji[ing] || "🍽️";
+            span.setAttribute("aria-hidden", "true");
+            mp.appendChild(span);
+            mp.classList.add("has-items");
+          }
+          if (pl) pl.textContent = `${nm[ing]} added to your plate!`;
+        }
+
+        btn.classList.add("is-added");
+        btn.textContent = "✓ Added!";
+        setTimeout(() => {
+          btn.classList.remove("is-added");
+          btn.textContent = "🍽️ Add to plate";
+        }, 1400);
+      });
+    });
+
+    // Initial paint
+    paint(0);
+    rotateTo(0);
+  })();
+
   /* ── Diya lamp toggle ── */
   const diyas = document.querySelectorAll(".diya");
 

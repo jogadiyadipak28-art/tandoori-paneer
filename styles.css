@@ -2489,3 +2489,300 @@ body::before {
 .recipe-family-illus:hover {
   opacity: 1;
 }
+
+/* ════════════════════════════════════════════
+   SPINNING TRAY — Ingredient Explorer
+   ════════════════════════════════════════════ */
+:root {
+  --tray-rot: 0deg;
+  --tray-ease: cubic-bezier(0.34, 0.02, 0.2, 1);
+}
+
+.tray-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .tray-layout { grid-template-columns: 1fr; }
+}
+
+/* ── tray widget ── */
+.tray-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.tray-widget {
+  position: relative;
+  width: min(420px, 90vw);
+  aspect-ratio: 1;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  --dish-size: 22%;
+  --orbit: -188%;
+}
+
+.tray-widget:active { cursor: grabbing; }
+
+/* Slowly rotating background drum */
+.tray__drum-bg {
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23c9902a' stroke-width='0.5' opacity='0.35'%3E%3Ccircle cx='100' cy='100' r='95'/%3E%3Ccircle cx='100' cy='100' r='78'/%3E%3Ccircle cx='100' cy='100' r='58'/%3E%3Ccircle cx='100' cy='100' r='38'/%3E%3Ccircle cx='100' cy='100' r='18'/%3E%3Cpath d='M100 5 L100 195 M5 100 L195 100 M29 29 L171 171 M171 29 L29 171 M100 5 L129 29 L195 100 L171 171 L100 195 L29 171 L5 100 L29 29Z'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(0,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(22.5,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(45,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(67.5,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(90,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(112.5,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(135,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(157.5,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(180,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(202.5,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(225,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(247.5,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(270,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(292.5,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(315,100,100) translate(0,-55)'/%3E%3Cellipse cx='100' cy='100' rx='4' ry='12' transform='rotate(337.5,100,100) translate(0,-55)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  animation: tray-drum-spin 40s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes tray-drum-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* The round plate */
+.tray__plate {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%,
+    rgba(211, 84, 0, 0.25) 0%,
+    rgba(26, 8, 2, 0.92) 60%,
+    rgba(10, 4, 2, 0.98) 100%
+  );
+  box-shadow:
+    0 0 0 2px rgba(201,144,42,0.4),
+    0 0 0 14px rgba(201,144,42,0.06),
+    0 24px 60px -20px rgba(0,0,0,0.8),
+    0 0 80px rgba(230,126,34,0.08);
+  z-index: 1;
+}
+
+/* Ring of dishes */
+.tray__ring {
+  position: absolute;
+  inset: 0;
+  rotate: var(--tray-rot);
+  transition: rotate 0.9s var(--tray-ease);
+}
+
+.tray-widget.is-dragging .tray__ring {
+  transition: none;
+}
+
+/* Each dish button */
+.tray__dish {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--dish-size);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  rotate: var(--a);
+  transform: translateY(var(--orbit));
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  transition: scale 0.3s ease;
+}
+
+.tray__dish-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  background: rgba(230, 126, 34, 0.12);
+  border: 1.5px solid rgba(201, 144, 42, 0.4);
+  box-shadow:
+    0 0 0 4px rgba(201,144,42,0.06),
+    0 4px 16px rgba(0,0,0,0.5);
+  rotate: calc(-1 * var(--tray-rot));
+  transition: rotate 0.9s var(--tray-ease), background 0.3s ease, border-color 0.3s ease;
+  pointer-events: none;
+}
+
+.tray-widget.is-dragging .tray__dish-inner {
+  transition: none;
+}
+
+.tray__dish:hover .tray__dish-inner,
+.tray__dish:focus-visible .tray__dish-inner {
+  background: rgba(230, 126, 34, 0.25);
+  border-color: var(--color-orange);
+}
+
+.tray__dish[aria-selected="true"] .tray__dish-inner {
+  background: rgba(230, 126, 34, 0.3);
+  border-color: var(--color-orange);
+  box-shadow:
+    0 0 0 3px rgba(230,126,34,0.2),
+  0 0 20px rgba(230,126,34,0.35),
+    0 4px 16px rgba(0,0,0,0.5);
+}
+
+.tray__dish:focus-visible {
+  outline: none;
+}
+
+/* Centre label */
+.tray__label {
+  position: absolute;
+  inset: 28%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,126,34,0.08) 0%, transparent 70%);
+}
+
+.tray__label-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--color-orange);
+  line-height: 1.1;
+}
+
+.tray__label-hint {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-top: 0.35rem;
+}
+
+/* Spin controls */
+.tray__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tray__spin-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(201,144,42,0.4);
+  background: none;
+  color: var(--color-orange);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.tray__spin-btn svg {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+}
+
+.tray__spin-btn:hover {
+  background: rgba(201,144,42,0.12);
+  border-color: var(--color-orange);
+}
+
+.tray__spin-hint {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+/* ── Detail panels ── */
+.tray-panels {
+  position: relative;
+  min-height: 300px;
+}
+
+.tray-panel {
+  padding: 2rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(230,126,34,0.18);
+  border-radius: var(--radius-md);
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, #e67e22, #c0392b, #e67e22) 1;
+  border-image-slice: 1;
+  animation: panel-in 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tray-panel__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.tray-panel__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-orange);
+  margin-bottom: 0.2rem;
+  line-height: 1.1;
+}
+
+.tray-panel__sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 1rem;
+}
+
+.tray-panel__text {
+  color: var(--color-text-muted);
+  font-size: 0.975rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.tray-panel__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: rgba(230,126,34,0.12);
+  border: 1px solid rgba(230,126,34,0.4);
+  border-radius: 999px;
+  color: var(--color-orange);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tray-panel__cta:hover {
+  background: rgba(230,126,34,0.22);
+  box-shadow: 0 0 16px rgba(230,126,34,0.25);
+}
+
+.tray-panel__cta.is-added {
+  background: rgba(230,126,34,0.3);
+  border-color: var(--color-orange);
+}
