@@ -2345,3 +2345,58 @@ body::before {
   .deva-watermark { font-size: 5rem; }
   .hero__eyebrow::after { display: none; }
 }
+
+/* ── Recipe illustration ── */
+.recipe-illustration {
+  grid-column: 1 / -1;
+  margin-top: 3rem;
+  padding: 2rem 1rem 1rem;
+  background: linear-gradient(135deg, #fdf6ec, #fff8f3);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(201, 144, 42, 0.2);
+  box-shadow: 0 4px 24px rgba(201, 144, 42, 0.08);
+  text-align: center;
+  animation: illus-fade-in 1s ease both;
+}
+
+@keyframes illus-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.recipe-illus-svg {
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 8px rgba(201, 144, 42, 0.12));
+  animation: illus-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes illus-glow {
+  from { filter: drop-shadow(0 2px 8px rgba(201, 144, 42, 0.10)); }
+  to   { filter: drop-shadow(0 4px 20px rgba(201, 144, 42, 0.28)); }
+}
+
+.recipe-illus-caption {
+  margin-top: 1rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: #c9902a;
+  opacity: 0.75;
+  letter-spacing: 0.02em;
+}
+
+/* Make recipe grid span illustration full width */
+.recipe__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .recipe-illus-svg { max-width: 100%; }
+}
