@@ -11,15 +11,41 @@
   <meta name="theme-color" content="#e67e22">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
 
   <header class="site-header" id="top">
+    <!-- Toran — decorative hanging garland -->
+    <div class="toran" aria-hidden="true">
+      <span class="toran__bead"></span><span class="toran__bead"></span>
+      <span class="toran__bead toran__bead--mango"></span>
+      <span class="toran__bead"></span><span class="toran__bead"></span>
+      <span class="toran__bead toran__bead--mango"></span>
+      <span class="toran__bead"></span><span class="toran__bead"></span>
+      <span class="toran__bead toran__bead--mango"></span>
+      <span class="toran__bead"></span><span class="toran__bead"></span>
+      <span class="toran__bead toran__bead--mango"></span>
+      <span class="toran__bead"></span><span class="toran__bead"></span>
+      <span class="toran__bead toran__bead--mango"></span>
+      <span class="toran__bead"></span><span class="toran__bead"></span>
+      <span class="toran__bead toran__bead--mango"></span>
+      <span class="toran__bead"></span><span class="toran__bead"></span>
+      <span class="toran__bead toran__bead--mango"></span>
+      <span class="toran__bead"></span><span class="toran__bead"></span>
+    </div>
     <nav class="nav" aria-label="Main navigation">
       <a href="#top" class="nav__logo" aria-label="Ember & Spice home">
+        <svg class="nav__lotus" viewBox="0 0 24 20" aria-hidden="true">
+          <ellipse cx="12" cy="14" rx="4" ry="6" fill="#e67e22" opacity="0.9"/>
+          <ellipse cx="7"  cy="13" rx="3.5" ry="5.5" fill="#d35400" opacity="0.75" transform="rotate(-25,7,13)"/>
+          <ellipse cx="17" cy="13" rx="3.5" ry="5.5" fill="#d35400" opacity="0.75" transform="rotate(25,17,13)"/>
+          <ellipse cx="3"  cy="14" rx="3" ry="5" fill="#e67e22" opacity="0.5" transform="rotate(-45,3,14)"/>
+          <ellipse cx="21" cy="14" rx="3" ry="5" fill="#e67e22" opacity="0.5" transform="rotate(45,21,14)"/>
+          <ellipse cx="12" cy="17" rx="5" ry="2" fill="#c0392b" opacity="0.4"/>
+        </svg>
         <span class="nav__logo-ember">Ember</span> & Spice
       </a>
 
@@ -140,18 +166,22 @@
     <section class="stats" aria-label="Quick facts about Tandoori Paneer Tikka">
       <dl class="stats__list">
         <div class="stats__item">
+          <span class="stats__icon" aria-hidden="true">🗺️</span>
           <dt class="stats__label">Origin</dt>
           <dd class="stats__value">North India</dd>
         </div>
         <div class="stats__item">
+          <span class="stats__icon" aria-hidden="true">🏺</span>
           <dt class="stats__label">Cooking Method</dt>
           <dd class="stats__value">Tandoor Clay Oven</dd>
         </div>
         <div class="stats__item">
+          <span class="stats__icon" aria-hidden="true">⏱️</span>
           <dt class="stats__label">Prep Time</dt>
           <dd class="stats__value">30 min + marinate</dd>
         </div>
         <div class="stats__item">
+          <span class="stats__icon" aria-hidden="true">🌶️</span>
           <dt class="stats__label">Comfort Level</dt>
           <dd class="stats__value">Maximum</dd>
         </div>
@@ -160,6 +190,8 @@
 
     <section class="story section" id="story" aria-labelledby="story-heading">
       <div class="section__inner">
+        <!-- Devanagari watermark -->
+        <div class="deva-watermark" aria-hidden="true">तंदूरी</div>
         <div class="story__text">
           <p class="section__eyebrow">Our Story</p>
           <h2 id="story-heading" class="section__title">When the tandoor calls you home</h2>
@@ -422,6 +454,13 @@
     </section>
 
     <section class="visit section section--accent" id="visit" aria-labelledby="visit-heading">
+      <!-- Floating lotus petals -->
+      <div class="petals" aria-hidden="true">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+      </div>
       <div class="section__inner visit__inner">
         <div class="visit__content">
           <p class="section__eyebrow section__eyebrow--light">Visit Us</p>
@@ -469,6 +508,17 @@
 
   <footer class="site-footer">
     <div class="site-footer__inner">
+      <!-- Marigold string decoration -->
+      <div class="marigold-string" aria-hidden="true">
+        <span class="marigold"></span><span class="marigold marigold--sm"></span>
+        <span class="marigold"></span><span class="marigold marigold--sm"></span>
+        <span class="marigold marigold--lg"></span>
+        <span class="marigold marigold--sm"></span><span class="marigold"></span>
+        <span class="marigold marigold--sm"></span><span class="marigold"></span>
+        <span class="marigold marigold--sm"></span><span class="marigold marigold--lg"></span>
+        <span class="marigold marigold--sm"></span><span class="marigold"></span>
+        <span class="marigold marigold--sm"></span><span class="marigold"></span>
+      </div>
       <!-- Interactive diya lamps -->
       <div class="diya-row" aria-label="Decorative diya lamps — click to toggle flame">
         <button class="diya" aria-label="Light diya 1" data-lit="true">
