@@ -101,7 +101,11 @@
   function createSparks() {
     if (!heroSparks || !heroFigure) return;
 
-    heroFigure.classList.add("is-sizzling");
+    const bgVideo = document.querySelector(".hero__bg-video video");
+    if (bgVideo) {
+      bgVideo.classList.add("is-sizzling");
+      setTimeout(() => bgVideo.classList.remove("is-sizzling"), 600);
+    }
 
     for (let i = 0; i < 16; i++) {
       const spark = document.createElement("span");
@@ -109,15 +113,12 @@
       const x = 20 + Math.random() * 60;
       const y = 30 + Math.random() * 40;
       spark.style.left = `${x}%`;
-      spark.style.top = `${y}%`;
+      spark.style.top  = `${y}%`;
       spark.style.setProperty("--sx", `${(Math.random() - 0.5) * 80}px`);
       spark.style.setProperty("--sy", `${-30 - Math.random() * 60}px`);
       heroSparks.appendChild(spark);
-
       setTimeout(() => spark.remove(), 800);
     }
-
-    setTimeout(() => heroFigure.classList.remove("is-sizzling"), 600);
   }
 
   if (sizzleBtn) {
