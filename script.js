@@ -388,4 +388,16 @@
       form.reset();
     });
   }
+
+  /* ── Diya lamp toggle ── */
+  const diyas = document.querySelectorAll(".diya");
+
+  diyas.forEach((diya) => {
+    diya.addEventListener("click", () => {
+      const isLit = diya.dataset.lit === "true";
+      diya.dataset.lit = isLit ? "false" : "true";
+      diya.setAttribute("aria-label", isLit ? "Light this diya" : "Extinguish this diya");
+    });
+  });
+
 })();
